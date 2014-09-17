@@ -1,79 +1,47 @@
-## Python Flask Skeleton for Google App Engine
+googleappengine-python-flask-skeleton
+=====================================
 
-A skeleton for building Python applications on Google App Engine with the
-[Flask micro framework](http://flask.pocoo.org).
+A skeleton for building Python applications on Google App Engine with the Flask micro framework.
 
-See our other [Google Cloud Platform github
-repos](https://github.com/GoogleCloudPlatform) for sample applications and
-scaffolding for other python frameworks and use cases.
+Install
+-------
 
-## Run Locally
-1. Install the [App Engine Python SDK](https://developers.google.com/appengine/downloads).
-See the README file for directions. You'll need python 2.7 and [pip 1.4 or later](http://www.pip-installer.org/en/latest/installing.html) installed too.
+```
+# Install the Google App Engine Python SDK
+cd
+wget https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.10.zip
+unzip google_appengine_1.9.10.zip
+rm google_appengine_1.9.10.zip
+export PATH=$PATH:~/google_appengine/
 
-2. Clone this repo with
+# Clone this repo
+git clone git@github.com:davide-ceretti/googleappengine-python-flask-skeleton.git
 
-   ```
-   git clone https://github.com/GoogleCloudPlatform/appengine-python-flask-skeleton.git
-   ```
-3. Install dependencies in the project's lib directory.
-   Note: App Engine can only import libraries from inside your project directory.
+# Install requirements (In your virtualenv)
+cd googleappengine-python-flask-skeleton
+pip install -r requirements.txt -t lib
+pip install -r test-requirements.txt
+```
 
-   ```
-   cd appengine-python-flask-skeleton
-   pip install -r requirements.txt -t lib
-   ```
-4. Run this project locally from the command line:
+Run server
+----------
 
-   ```
-   dev_appserver.py .
-   ```
+```
+./run.sh
+# App is served at http://localhost:8080/
+# Admin interface is served at http://localhost:8000
+```
 
-Visit the application [http://localhost:8080](http://localhost:8080)
+Run tests
+---------
 
-See [the development server documentation](https://developers.google.com/appengine/docs/python/tools/devserver)
-for options when running dev_appserver.
+```
+./test.sh
+```
 
-## Deploy
-To deploy the application:
+Deploy
+------
 
-1. Use the [Admin Console](https://appengine.google.com) to create a
-   project/app id. (App id and project id are identical)
-1. [Deploy the
-   application](https://developers.google.com/appengine/docs/python/tools/uploadinganapp) with
-
-   ```
-   appcfg.py -A <your-project-id> --oauth2 update .
-   ```
-1. Congratulations!  Your application is now live at your-app-id.appspot.com
-
-## Next Steps
-This skeleton includes `TODO` markers to help you find basic areas you will want
-to customize.
-
-### Relational Databases and Datastore
-To add persistence to your models, use
-[NDB](https://developers.google.com/appengine/docs/python/ndb/) for
-scale.  Consider
-[CloudSQL](https://developers.google.com/appengine/docs/python/cloud-sql)
-if you need a relational database.
-
-### Installing Libraries
-See the [Third party
-libraries](https://developers.google.com/appengine/docs/python/tools/libraries27)
-page for libraries that are already included in the SDK.  To include SDK
-libraries, add them in your app.yaml file. Other than libraries included in
-the SDK, only pure python libraries may be added to an App Engine project.
-
-### Feedback
-Star this repo if you found it useful. Use the github issue tracker to give
-feedback on this repo.
-
-## Contributing changes
-See [CONTRIB.md](CONTRIB.md)
-
-## Licensing
-See [LICENSE](LICENSE)
-
-## Author
-Logan Henriquez and Johan Euphrosine
+* Use the Admin Console to create a project/app id. (App id and project id are identical)
+* Update app.yaml with the chosen app id
+* ```./deploy.sh```
